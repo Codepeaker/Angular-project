@@ -1,0 +1,55 @@
+<div class="container">
+    <table class="table table-striped">
+      <tr>
+        <th>Id</th>
+        <th>Attribute</th>
+        <th>Name</th>
+        <th>UniqueId</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let item of dataList">
+        <td>{{item.id}}</td>
+        <td>{{item.attributes}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.uniqueId}}</td>
+        <td><button (click)="updateData(item.id,item.name,item.uniqueId)" class="btn-btn-primary">Update</button></td>
+    </table>
+    </div><br>
+    
+    <div class="jumbotron">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 offset-md-2">
+                  <h3 class="text-center success">Update Form</h3>
+                  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+                       <div class="form-group">
+                          <label for="lastName">Attribute</label>
+                          <input type="text" class="form-control" name="attributes" [(ngModel)]="model.attributes" #attributes="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
+                          <div *ngIf="f.submitted && attributes.invalid" class="invalid-feedback">
+                              <div *ngIf="attributes.errors.required">Attribute is required</div>
+                          </div>
+                      </div>
+                          <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
+                          <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                            <div *ngIf="name.errors.required">Name is required</div>
+                          </div>
+                        </div>
+                      <div class="form-group">
+                          <label for="email">uniqueId</label>
+                          <input type="text" class="form-control" name="uniqueId" [(ngModel)]="model.uniqueId" #uniqueId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && uniqueId.invalid }" required uniqueId/>
+                          <div *ngIf="f.submitted && uniqueId.invalid" class="invalid-feedback">
+                              <div *ngIf="uniqueId.errors.required">uniqueId is required</div>
+                              <div *ngIf="uniqueId.errors.required">uniqueId is required</div>
+                          </div>
+                      </div>
+                    
+                      <div class="form-group">
+                          <button class="btn btn-primary">Register</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
